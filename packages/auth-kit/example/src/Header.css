@@ -1,0 +1,48 @@
+/* I want the navbar to stick */
+/* keep the aspect ratio when it resizes the image:object-fit: contain; */
+/* display flex by default put things in a raw */
+
+.header{
+    display: flex;
+    justify-content : space-evenly;
+    border-bottom:0.1px solid lightgray;
+    padding-top:10px;
+    padding-bottom: 10px;
+    width: 100%;
+    position : sticky;
+    z-index:999;
+    background: white;
+}
+
+/* because you want the whole thing horizontacly */
+.header__left{
+    display: flex;
+}
+.header__left > img {
+    object-fit: contain;
+    height : 40px;
+    margin-right : 10px;
+}
+
+.header__search{
+    padding:10px;
+    display: flex;
+    align-items: center;
+    /* border: solid blue; */
+    border-radius: 5px;
+    height: 22px;
+    color: lightblue;
+   background-color: rgb(237, 243, 248);
+
+}
+
+.header__search > input{
+    outline:none;
+    border : none;
+    background: none;
+}
+
+.header__right{
+    display: flex;
+
+}

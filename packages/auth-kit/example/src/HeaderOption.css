@@ -1,0 +1,24 @@
+/* object-fit  to keep the aspect ratio */
+.headerOption{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-right : 53px;
+    color: gray;
+    cursor: pointer;
+    /* border: solid blue; */
+}
+
+.headerOption:hover{
+    color: black;
+}
+
+.headerOption__icon{
+    object-fit: contain;
+    height:35px !important;
+    width:35px !important;
+}
+.headerOption__title{
+    font-size:15px;
+    font-weight:400;
+}

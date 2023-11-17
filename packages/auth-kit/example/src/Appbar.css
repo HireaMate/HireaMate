@@ -1,0 +1,45 @@
+/* I want the navbar to stick */
+/* keep the aspect ratio when it resizes the image:object-fit: contain; */
+/* display flex by default put things in a raw */
+
+.header{
+    position : sticky;
+    z-index:999;
+    border: solid red;
+}
+
+.components{
+    display: flex;
+    max-width: 100rem/* 896px */;
+    align-items: center;
+    justify-content : space-between;
+    top: 0px;
+    /* padding: 1rem; */
+    margin-left: auto;
+    margin-right: auto;
+    padding-top:12px;
+    padding-bottom: 12px;
+}
+
+
+
+/* because you want the whole thing horizontacly */
+.header__left{
+    display: flex;
+    align-items: center;
+}
+
+
+.header__right{
+    display: flex;
+    align-items: center;
+}
+
+.test {
+    padding-left: 80px;
+}
+
+.test > Button{
+    font-size:15px !important;
+    font-weight:400 !important;
+}
