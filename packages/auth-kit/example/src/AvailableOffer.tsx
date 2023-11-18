@@ -549,23 +549,36 @@ const handleSave = async (contract) => {
     console.log('Mapped Job ID for the creator:', mappedJobId);
 
     // Create SignedInAccount variable based on the signer
-    const SignedInAccount =
-      signer && (
-        <>
-          <EthHashInfo
-            address={signer.address}
-            showCopyButton
-            showPrefix
-            prefix={getPrefix('0x5')}
-          />
-        </>
-      );
+    // const SignedInAccount =
+    //   signer && (
+    //     <>
+    //       <EthHashInfo
+    //         address={signer.address}
+    //         showCopyButton
+    //         showPrefix
+    //         prefix={getPrefix('0x5')}
+    //       />
+    //     </>
+    //   );
+	const SignedInAccount =
+	safeAuthSignInResponse && (
+		<>
+		  <EthHashInfo
+			address={safeAuthSignInResponse.eoa}
+			showCopyButton
+			showPrefix
+			prefix={getPrefix('0x5')}
+		  />
+		</>
+	  );
 
     console.log('SignedInAccount is :', SignedInAccount);
+	console.log('SignedInAccount is :', safeAuthSignInResponse.eoa);
 
-    // Call the functions with the signed contract
-    await signedContract.addSignInAccountMapping(signer.address, jobId, creator);
-    const mappedDev = await signedContract.getCreatorBySignInAccountAndJobId(creator, jobId);
+
+		await signedContract.addSignInAccountMapping(safeAuthSignInResponse.eoa, jobId, creator);
+
+		const mappedDev = await signedContract.getCreatorBySignInAccountAndJobId(creator, jobId);
 
     console.log('Mapped Creator for SignedInAccount and Job ID:', mappedDev);
 
@@ -608,7 +621,7 @@ const handleSave = async (contract) => {
         </DialogContent>
         <DialogActions>
           <Button onClick={handleClose}>Cancel</Button>
-		  <Button onClick={() => handleSave(contract, isLoggedIn, safeAuthSignInResponse)}>Save</Button>
+		 {/* <Button onClick={() => handleSave(contract)}>Save</Button> */}
         </DialogActions>
       </Dialog>
 	  </div>
