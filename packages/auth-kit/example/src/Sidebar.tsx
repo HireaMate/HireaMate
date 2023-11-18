@@ -6,13 +6,16 @@ import bg from './Assets/bg.jpg';
 import dog from './Assets/dog.jpg';
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import { SafeGetUserInfoResponse, Web3AuthModalPack } from '../../src';
+import { EthHashInfo } from '@safe-global/safe-react-components'
 
 type AppBarProps = {
     isLoggedIn: boolean
     userInfo?: SafeGetUserInfoResponse<Web3AuthModalPack>;
+    // eoa?: string | null
+    signInInfo?: SafeGetUserInfoResponse<Web3AuthModalPack>;
   }
 
-function Sidebar({ userInfo, isLoggedIn }: AppBarProps) {
+function Sidebar({ userInfo, isLoggedIn, isSafe }: AppBarProps) {
 
 
 const recentItem = (topic)=> (
@@ -27,6 +30,7 @@ const recentItem = (topic)=> (
     </div>
 );
 
+
   return (
     <div className='sidebar'>
 
@@ -40,9 +44,17 @@ const recentItem = (topic)=> (
             <Avatar src={dog} className="sidebar__avatar" >
             {/* {userInfo.email[0]} */}
             </Avatar>
-            {isLoggedIn && userInfo && (
-                <h2 style={{ fontSize: '25px' }}> {userInfo.name}</h2>
-                )}
+                {isLoggedIn && userInfo && (
+                    <h2 style={{ fontSize: '25px' }}> {userInfo.name}</h2>
+                    )}
+                {isSafe && (
+                    <EthHashInfo
+                      address={safeAuthSignInResponse.eoa}
+                      showCopyButton
+                      showPrefix
+                      prefix={getPrefix('0x5')}
+                    />
+                  )}
                 {isLoggedIn && userInfo && (
                 <h4 style={{ fontSize: '20px', color: 'white' }}> {userInfo.email}</h4>
                 )}

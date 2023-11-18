@@ -129,7 +129,7 @@ function App() {
       <AppBar onLogin={login} onLogout={logout} userInfo={userInfo} isLoggedIn={!!provider} />
       <div className="comp">
       <div className="App_body">
-      <Sidebar userInfo={userInfo} onLogout={logout} userInfo={userInfo} isLoggedIn={!!provider} />
+      <Sidebar userInfo={userInfo} userInfo={userInfo} isLoggedIn={!!provider} isSafe={signInInfo} />
       <Feed userInfo={userInfo} onLogout={logout} userInfo={userInfo} isLoggedIn={!!provider} />
       <Widgets userInfo={userInfo} onLogout={logout} userInfo={userInfo} isLoggedIn={!!provider} />
       </div>

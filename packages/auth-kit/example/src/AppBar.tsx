@@ -9,6 +9,7 @@ import ChatIcon from '@mui/icons-material/Chat';
 import NotificationsIcon from '@mui/icons-material/Notifications';
 import "./Appbar.css"
 
+
 type AppBarProps = {
   isLoggedIn: boolean
   onLogin: () => void
@@ -34,13 +35,13 @@ const AppBar = ({ isLoggedIn, onLogin, onLogout, userInfo }: AppBarProps) => {
                 <HeaderOption userInfo={userInfo} Icon={ChatIcon} title="Chat" />
                 <HeaderOption userInfo={userInfo} Icon={NotificationsIcon} title="Notifications" />
                 <div className="test">
-                <Button onClick={onLogout} sx={{ fontSize: '1.5rem', padding: '15px 30px' }}>
+                <Button onClick={onLogout} >
                   Log Out
                 </Button>
                 </div>
               </div>
             ) : (
-              <Button onClick={onLogin}>
+              <Button onClick={onLogin} >
                 Login
               </Button>
             )}

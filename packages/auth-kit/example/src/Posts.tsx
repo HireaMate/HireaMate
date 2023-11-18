@@ -123,7 +123,7 @@ const Posts = () => {
   return (
     <div>
       <Button startIcon={<AddCircleIcon />} onClick={handleOpen}>
-        Submit
+      <p style={{ fontSize: '20px' }} >  Submit a new Job Offer...</p>
       </Button>
 
       <Dialog open={open} onClose={handleClose}>

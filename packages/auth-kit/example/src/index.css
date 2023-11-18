@@ -8,6 +8,7 @@
     flex-direction: column;
     align-items:flex-center;
     /* align-items:flex-center; */
+    background: url('./Assets/g.png');
 
 }
 
@@ -20,7 +21,7 @@
     margin-left: 20px;
     margin-right: 20px; */
     /* max-width: 1200px; */
-    border: solid blue;
+    /* border: solid blue; */
     /* background-color: rgb(235, 233, 233); */
   }
 
@@ -36,7 +37,7 @@
     margin-left: 20px;
     margin-right: 20px; */
     /* max-width: 1200px; */
-    border: solid yellow;
+    /* border: solid yellow; */
     /* background-color: rgb(235, 233, 233); */
   }
 
