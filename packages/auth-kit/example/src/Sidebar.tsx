@@ -11,11 +11,10 @@ import { EthHashInfo } from '@safe-global/safe-react-components'
 type AppBarProps = {
     isLoggedIn: boolean
     userInfo?: SafeGetUserInfoResponse<Web3AuthModalPack>;
-    // eoa?: string | null
-    signInInfo?: SafeGetUserInfoResponse<Web3AuthModalPack>;
+    safeAuthSignInResponse?: SafeGetUserInfoResponse<Web3AuthModalPack>;
   }
 
-function Sidebar({ userInfo, isLoggedIn, isSafe }: AppBarProps) {
+function Sidebar({ userInfo, isLoggedIn, safeAuthSignInResponse }: AppBarProps) {
 
 
 const recentItem = (topic)=> (
@@ -47,14 +46,16 @@ const recentItem = (topic)=> (
                 {isLoggedIn && userInfo && (
                     <h2 style={{ fontSize: '25px' }}> {userInfo.name}</h2>
                     )}
-                {isSafe && (
-                    <EthHashInfo
-                      address={safeAuthSignInResponse.eoa}
-                      showCopyButton
-                      showPrefix
-                      prefix={getPrefix('0x5')}
-                    />
-                  )}
+                    {safeAuthSignInResponse && (
+                          <>
+                            <EthHashInfo
+                              address={safeAuthSignInResponse.eoa}
+                              showCopyButton
+                              showPrefix
+                              prefix={getPrefix('0x5')}
+                            />
+                          </>
+                        )}
                 {isLoggedIn && userInfo && (
                 <h4 style={{ fontSize: '20px', color: 'white' }}> {userInfo.email}</h4>
                 )}
@@ -80,6 +81,22 @@ const recentItem = (topic)=> (
         </div>
     </div>
   )
+}
+
+
+const getPrefix = (chainId: string) => {
+  switch (chainId) {
+    case '0x1':
+      return 'eth'
+    case '0x5':
+      return 'gor'
+    case '0x100':
+      return 'gno'
+    case '0x137':
+      return 'matic'
+    default:
+      return 'eth'
+  }
 }
 
 export default Sidebar

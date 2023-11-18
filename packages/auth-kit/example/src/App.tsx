@@ -129,7 +129,7 @@ function App() {
       <AppBar onLogin={login} onLogout={logout} userInfo={userInfo} isLoggedIn={!!provider} />
       <div className="comp">
       <div className="App_body">
-      <Sidebar userInfo={userInfo} userInfo={userInfo} isLoggedIn={!!provider} isSafe={signInInfo} />
+      <Sidebar userInfo={userInfo} isLoggedIn={!!provider} safeAuthSignInResponse={safeAuthSignInResponse} />
       <Feed userInfo={userInfo} onLogout={logout} userInfo={userInfo} isLoggedIn={!!provider} />
       <Widgets userInfo={userInfo} onLogout={logout} userInfo={userInfo} isLoggedIn={!!provider} />
       </div>
@@ -195,5 +195,7 @@ const getPrefix = (chainId: string) => {
       return 'eth'
   }
 }
+
+
 
 export default App
