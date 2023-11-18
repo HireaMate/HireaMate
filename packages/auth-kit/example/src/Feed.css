@@ -1,0 +1,59 @@
+ 
+/* ok I see so 20px margin from the element to the left */
+.feed{
+    flex:0.6;
+     /* border: solid blue; */
+    margin : 0 20px;
+    border-radius:10px;
+    /* text-align: center; */
+    height: fit-centent;
+}
+/* so margin is like the separation between the outter and inner container
+and padding is the sep within the container  */
+.feed_inputContainer{
+    /* background-color: white; */
+    /* border: solid red; */
+    padding:10px;
+    padding-bottom:10px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+}
+
+.feed_input{
+    border: 1px solid green;
+    display:flex;
+    padding-left: 15px;
+    border-radius: 30px;
+    padding: 10px;
+    color:gray;
+}
+
+.feed_input > p{
+    font-size:15px ;
+    font-weight:400;
+}
+
+.feed_input > form{
+    display:flex;
+    width: 100%;
+}
+
+.feed_input > form > input{
+    outline:none;
+    border:none;
+    background: none;
+    flex:1;
+    margin-left:10px;
+    outline-width: 0;
+    font-weight: 600;
+}
+
+.feed_input > form > button{
+    display:none;
+}
+
+.feed_inputOptions{
+    /* border: solid blue; */
+    display:flex;
+    justify-content: space-evenly;
+}
