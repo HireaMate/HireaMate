@@ -2,10 +2,19 @@ import React, { useState } from 'react';
 import { Button, Dialog, DialogActions, DialogContent, DialogTitle, TextField } from '@mui/material';
 import AddCircleIcon from '@mui/icons-material/AddCircle';
 import { createOffer } from './CreateOffer';
-import { useAuth } from './AuthContext';
+// import { useAuth } from './AuthContext';
+import { SafeGetUserInfoResponse, Web3AuthModalPack } from '../../src';
 
-const Posts = () => {
-	const { signInInfo } = useAuth();
+type AppBarProps = {
+
+    signInInfo?: SafeGetUserInfoResponse<Web3AuthModalPack>;
+  }
+
+function Posts({ signInInfo }: AppBarProps){
+	// const { signInInfo } = "null";
+
+    console.log(signInInfo)
+
   const [formObject, setFormObject] = useState({
     name: '',
     //creator: '',
@@ -36,11 +45,11 @@ const Posts = () => {
 
   const handleSave = async () => {
 	// Validate and save form data
-	if (isValidForm()) {
+	if (isValidForm() && signInInfo) {
 	  console.log('formObject:', formObject);
   
 	  // Call createOffer function to interact with the smart contract
-      console.log(signInInfo)
+    //   console.log(signInInfo)
 	  const offerCreated = await createOffer(formObject, signInInfo);
   
 	  if (offerCreated) {
@@ -52,6 +61,7 @@ const Posts = () => {
 	  }
   
 	  // Close the modal
+      console.log('formObject:', formObject);
 	  handleClose();
 	} else {
 	  // Handle validation error, you can show a message to the user
@@ -119,7 +129,7 @@ const Posts = () => {
 	// Check if all fields are valid
 	return isNameValid && isExpirationDateValid && isDescriptionValid && isPriceValid;
   };
-  
+  console.log(open)
   
   
   

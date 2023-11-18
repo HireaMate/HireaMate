@@ -3,7 +3,7 @@ import "./Feed.css"
 import Posts from "./Posts"
 import { useState, useEffect } from "react";
 import FlipMove from 'react-flip-move'
-import { AuthProvider } from './AuthContext';
+// import { AuthProvider } from './AuthContext';
 import { SafeGetUserInfoResponse, Web3AuthModalPack } from '../../src';
 import { EthHashInfo } from '@safe-global/safe-react-components'
 import ContractInteractionComponent from './AvailableOffer'
@@ -12,21 +12,22 @@ type AppBarProps = {
   isLoggedIn: boolean
   userInfo?: SafeGetUserInfoResponse<Web3AuthModalPack>;
   safeAuthSignInResponse?: SafeGetUserInfoResponse<Web3AuthModalPack>;
+  signInInfo?: SafeGetUserInfoResponse<Web3AuthModalPack>;
 }
 
 
-function Feed({ userInfo, isLoggedIn, safeAuthSignInResponse }: AppBarProps) {
+function Feed({ userInfo, isLoggedIn, safeAuthSignInResponse, signInInfo}: AppBarProps) {
   
   return (
     <div className='feed'>
 
       <div className='feed_inputContainer'>
-      <AuthProvider>
+ 
         <div className='feed_input'>
-        <Posts/>
+        <Posts signInInfo={signInInfo}
+          />
         </div>
         <ContractInteractionComponent />
-        </AuthProvider>
 
         </div>
     </div>

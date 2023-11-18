@@ -33,6 +33,7 @@ function App() {
     null
   )
   const [userInfo, setUserInfo] = useState<Partial<UserInfo>>()
+  const [signInInfo, setsignInInfo] = useState()
   const [provider, setProvider] = useState<SafeEventEmitterProvider | null>(null)
 
 
@@ -109,6 +110,7 @@ function App() {
     if (!web3AuthModalPack) return
 
     const signInInfo = await web3AuthModalPack.signIn()
+    setsignInInfo(signInInfo || undefined)
     console.log('SIGN IN RESPONSE: ', signInInfo)
 
     const userInfo = await web3AuthModalPack.getUserInfo()
@@ -134,13 +136,7 @@ function App() {
     <>
       <AppBar onLogin={login} onLogout={logout} userInfo={userInfo} isLoggedIn={!!provider} />
 
-      {/* <Box className="centeredComponent">
-        <Grid container justifyContent="center">
-          <Grid item xs={12} md={8}>
-            <ContractInteractionComponent />
-          </Grid>
-        </Grid>
-      </Box> */}
+
 
 
       <div className="comp">
@@ -148,7 +144,7 @@ function App() {
       <Sidebar userInfo={userInfo} isLoggedIn={!!provider} safeAuthSignInResponse={safeAuthSignInResponse} />
       <Feed 
       userInfo={userInfo}  userInfo={userInfo} isLoggedIn={!!provider} safeAuthSignInResponse={safeAuthSignInResponse}
-      
+      signInInfo={signInInfo}
 
       />
       <Widgets userInfo={userInfo} onLogout={logout} userInfo={userInfo} isLoggedIn={!!provider} />
