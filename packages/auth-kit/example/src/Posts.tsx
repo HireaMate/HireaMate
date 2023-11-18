@@ -148,40 +148,32 @@ function Posts({ signInInfo }: AppBarProps){
 
   return (
     <div>
-      <Button startIcon={<AddCircleIcon />} onClick={handleOpen}>
-      <p style={{ fontSize: '20px' }} >  Submit a new Job Offer...</p>
-      </Button>
+                    <Button startIcon={<AddCircleIcon />} onClick={handleOpen}>
+                    <p style={{ fontSize: '20px' }} >  Submit a new Job Offer...</p>
+                    </Button>
 
-      <Dialog open={open} onClose={handleClose}>
-        <DialogTitle>Enter Job Details</DialogTitle>
-        <DialogContent>
-		<TextField
-  label="Job Name"
-  value={formObject.name}
-  onChange={(e) => handleChange('name', e.target.value)}
-  fullWidth
-  margin="normal"
-  inputProps={{
-    maxLength: 30,
-  }}
-  pattern="^[A-Za-z][A-Za-z\s]*$"
-  onChange={(e) => {
-    const value = e.target.value;
-    // Ensure the first character is uppercase
-    const formattedValue = value.charAt(0).toUpperCase() + value.slice(1);
-    handleChange('name', formattedValue);
-  }}
-  helperText={errors.name} // Display error message
-  error={Boolean(errors.name)} // Highlight the field in red if there's an error
-/>
-          {/* Add similar sections for other fields with helperText and error props */}
-          {/* <TextField
-            label="Creator Address"
-            value={formObject.creator}
-            onChange={(e) => handleChange('creator', e.target.value)}
-            fullWidth
-            margin="normal"
-          /> */}
+                    <Dialog open={open} onClose={handleClose}>
+                        <DialogTitle>Enter Job Details</DialogTitle>
+                        <DialogContent>
+                        <TextField
+                label="Job Name"
+                value={formObject.name}
+                onChange={(e) => handleChange('name', e.target.value)}
+                fullWidth
+                margin="normal"
+                inputProps={{
+                    maxLength: 30,
+                }}
+                pattern="^[A-Za-z][A-Za-z\s]*$"
+                onChange={(e) => {
+                    const value = e.target.value;
+                    // Ensure the first character is uppercase
+                    const formattedValue = value.charAt(0).toUpperCase() + value.slice(1);
+                    handleChange('name', formattedValue);
+                }}
+                helperText={errors.name} // Display error message
+                error={Boolean(errors.name)} // Highlight the field in red if there's an error
+                />
           <TextField
 			label="Expiration Date (dd-mm-yyyy)"
 			value={formObject.expirationDate}

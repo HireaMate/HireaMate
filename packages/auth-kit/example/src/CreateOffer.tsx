@@ -5,19 +5,8 @@ dotenv.config();
 
 // Replace 'YOUR_ETHEREUM_PROVIDER_URL' and 'YOUR_CONTRACT_ADDRESS' with your actual values
 const ethereumProviderUrl = 'https://sepolia.infura.io/v3/5b7465b67f684d79be59b0289fbb6ac9';
-const contractAddress = '0x005D4715867F008b4161147E8DBD2F51638fD09D';
-const contractAbi = [
-	{
-		"inputs": [
-			{
-				"internalType": "address",
-				"name": "_owner",
-				"type": "address"
-			}
-		],
-		"stateMutability": "nonpayable",
-		"type": "constructor"
-	},
+const contractAddress = '0x8f09D8129bcD7B7eF957a4ddf2fDf0CE4f089C07';
+const contractABI = [
 	{
 		"inputs": [
 			{
@@ -64,11 +53,6 @@ const contractAbi = [
 						"internalType": "uint256",
 						"name": "price",
 						"type": "uint256"
-					},
-					{
-						"internalType": "string[]",
-						"name": "links",
-						"type": "string[]"
 					}
 				],
 				"internalType": "struct Form",
@@ -79,6 +63,169 @@ const contractAbi = [
 		"name": "createOffer",
 		"outputs": [],
 		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "Id",
+				"type": "uint256"
+			}
+		],
+		"name": "creator_to_id",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "_jobId",
+				"type": "uint256"
+			}
+		],
+		"name": "deleteJob",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "_owner",
+				"type": "address"
+			}
+		],
+		"stateMutability": "nonpayable",
+		"type": "constructor"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "",
+				"type": "address"
+			}
+		],
+		"name": "creator",
+		"outputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "",
+				"type": "address"
+			},
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"name": "devAddress",
+		"outputs": [
+			{
+				"internalType": "address",
+				"name": "",
+				"type": "address"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "employer",
+		"outputs": [
+			{
+				"internalType": "address",
+				"name": "",
+				"type": "address"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "_address",
+				"type": "address"
+			}
+		],
+		"name": "getEmployerById",
+		"outputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "Job",
+				"type": "uint256"
+			}
+		],
+		"name": "getJob",
+		"outputs": [
+			{
+				"components": [
+					{
+						"internalType": "string",
+						"name": "name",
+						"type": "string"
+					},
+					{
+						"internalType": "string",
+						"name": "creator",
+						"type": "string"
+					},
+					{
+						"internalType": "uint256",
+						"name": "creationDate",
+						"type": "uint256"
+					},
+					{
+						"internalType": "string",
+						"name": "expirationDate",
+						"type": "string"
+					},
+					{
+						"internalType": "string",
+						"name": "description",
+						"type": "string"
+					},
+					{
+						"internalType": "uint256",
+						"name": "price",
+						"type": "uint256"
+					}
+				],
+				"internalType": "struct Form",
+				"name": "",
+				"type": "tuple"
+			}
+		],
+		"stateMutability": "view",
 		"type": "function"
 	},
 	{
@@ -140,8 +287,9 @@ const contractAbi = [
 	}
 ];
 
+
 const web3 = new Web3(ethereumProviderUrl);
-const contract = new web3.eth.Contract(contractAbi, contractAddress);
+const contract = new web3.eth.Contract(contractABI, contractAddress);
 
 interface SolidityForm {
 	name: string;
@@ -150,7 +298,7 @@ interface SolidityForm {
 	expirationDate: string;
 	description: string;
 	price: number;
-	links: string[];
+
   }
 
 export const createOffer = async (formObject: SolidityForm, signInInfo) => {
@@ -165,14 +313,14 @@ export const createOffer = async (formObject: SolidityForm, signInInfo) => {
 			  expirationDate: formObject.expirationDate,
 			  description: formObject.description,
 			  price: formObject.price,
-			  links: formObject.links || [],
+	
 			}
 		};
 		
 // 		console.log('Private Key:', import.meta.env.PK);
 // console.log('Account Address:', process.env.SEP_ACCOUNT);
 
-		const privateKey = "37f07c56a69dc2bbbdea9694cb21762240b8f4cb561c78c5c8755c1902645e2d";
+		const privateKey = "040101657935985e61e34badc91210845de791ea652e9bc9d9bc65736ca0bb89";
 		// if (!privateKey || !privateKey.startsWith('0x') || privateKey.length !== 66) {
 		// 	console.error('Error: Invalid private key');
 		// 	return false;
