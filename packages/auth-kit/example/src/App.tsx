@@ -15,7 +15,10 @@ import AppBar from './AppBar'
 import Sidebar from './Sidebar'
 import Widgets from './Widgets'
 import Feed from './Feed'
+import ContractInteractionComponent from './AvailableOffer';
+import { useAuth } from './AuthContext';
 import './index.css'
+
 
 
 
@@ -31,6 +34,7 @@ function App() {
   )
   const [userInfo, setUserInfo] = useState<Partial<UserInfo>>()
   const [provider, setProvider] = useState<SafeEventEmitterProvider | null>(null)
+
 
   useEffect(() => {
     ;(async () => {
@@ -95,9 +99,11 @@ function App() {
     if (web3AuthModalPack && web3AuthModalPack.getProvider()) {
       ;(async () => {
         await login()
+
       })()
     }
   }, [web3AuthModalPack])
+
 
   const login = async () => {
     if (!web3AuthModalPack) return
@@ -127,56 +133,27 @@ function App() {
   return (
     <>
       <AppBar onLogin={login} onLogout={logout} userInfo={userInfo} isLoggedIn={!!provider} />
+
+      {/* <Box className="centeredComponent">
+        <Grid container justifyContent="center">
+          <Grid item xs={12} md={8}>
+            <ContractInteractionComponent />
+          </Grid>
+        </Grid>
+      </Box> */}
+
+
       <div className="comp">
       <div className="App_body">
       <Sidebar userInfo={userInfo} isLoggedIn={!!provider} safeAuthSignInResponse={safeAuthSignInResponse} />
-      <Feed userInfo={userInfo} onLogout={logout} userInfo={userInfo} isLoggedIn={!!provider} />
+      <Feed 
+      userInfo={userInfo}  userInfo={userInfo} isLoggedIn={!!provider} safeAuthSignInResponse={safeAuthSignInResponse}
+      
+
+      />
       <Widgets userInfo={userInfo} onLogout={logout} userInfo={userInfo} isLoggedIn={!!provider} />
       </div>
       </div>
-
-
-
-      {/* {safeAuthSignInResponse?.eoa && (
-        <Grid container>
-
-          <Grid item md={4} p={4}>
-            <Typography variant="h3" color="secondary" fontWeight={700}>
-              Owner account
-            </Typography>
-            <Divider sx={{ my: 3 }} />
-            <EthHashInfo
-              address={safeAuthSignInResponse.eoa}
-              showCopyButton
-              showPrefix
-              prefix={getPrefix('0x5')}
-            />
-          </Grid>
-
-          <Grid item md={8} p={4}>
-            <>
-              <Typography variant="h3" color="secondary" fontWeight={700}>
-                Available Safes
-              </Typography>
-              <Divider sx={{ my: 3 }} />
-
-              {safeAuthSignInResponse?.safes?.length ? (
-                safeAuthSignInResponse?.safes?.map((safe, index) => (
-                  <Box sx={{ my: 3 }} key={index}>
-                    <EthHashInfo address={safe} showCopyButton shortAddress={false} />
-                  </Box>
-                ))
-              ) : (
-                <Typography variant="body1" color="secondary" fontWeight={700}>
-                  No Available Safes
-                </Typography>
-              )}
-
-            </>
-          </Grid>
-
-        </Grid>
-      )} */}
     </>
   )
 }

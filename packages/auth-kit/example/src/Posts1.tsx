@@ -1,11 +1,8 @@
 import React, { useState } from 'react';
 import { Button, Dialog, DialogActions, DialogContent, DialogTitle, TextField } from '@mui/material';
 import AddCircleIcon from '@mui/icons-material/AddCircle';
-import { createOffer } from './CreateOffer';
-import { useAuth } from './AuthContext';
 
 const Posts = () => {
-	const { signInInfo } = useAuth();
   const [formObject, setFormObject] = useState({
     name: '',
     //creator: '',
@@ -34,29 +31,16 @@ const Posts = () => {
     });
   };
 
-  const handleSave = async () => {
-	// Validate and save form data
-	if (isValidForm()) {
-	  console.log('formObject:', formObject);
-  
-	  // Call createOffer function to interact with the smart contract
-      console.log(signInInfo)
-	  const offerCreated = await createOffer(formObject, signInInfo);
-  
-	  if (offerCreated) {
-		// Handle success, e.g., show a success message or redirect the user
-		console.log('Offer created successfully!');
-	  } else {
-		// Handle failure, e.g., show an error message to the user
-		console.error('Failed to create offer.');
-	  }
-  
-	  // Close the modal
-	  handleClose();
-	} else {
-	  // Handle validation error, you can show a message to the user
-	  console.error('Form validation failed.');
-	}
+  const handleSave = () => {
+    // Validate and save form data
+    if (isValidForm()) {
+      console.log('formObject:', formObject);
+      // Close the modal
+      handleClose();
+    } else {
+      // Handle validation error, you can show a message to the user
+      console.error('Form validation failed.');
+    }
   };
 
   const formatPriceInput = (value) => {
