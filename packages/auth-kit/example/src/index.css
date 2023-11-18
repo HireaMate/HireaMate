@@ -6,6 +6,7 @@
     /* background-color: rgb(235, 233, 233); */
     display:flex;
     flex-direction: column;
+    align-items:flex-center;
     /* align-items:flex-center; */
 
 }
@@ -13,13 +14,29 @@
 /* so the body is in a raw */
 .App_body{
     display:flex;
-    margin-top: 35px;
+    align-items:flex-center;
+    justify-content: center;
+    /* margin-top: 35px;
     margin-left: 20px;
-    margin-right: 20px;
+    margin-right: 20px; */
     /* max-width: 1200px; */
-    /* max-width: 100rem; */
-    max-width: 1200px;
     border: solid blue;
+    /* background-color: rgb(235, 233, 233); */
+  }
+
+  .comp{
+    padding-left: 100px;
+    padding-right: 100px;
+    padding-top: 50px;
+    /* display:flex;
+    align-items:flex-center;
+    justify-content: center;
+    max-width: 100rem; */
+    /* margin-top: 35px;
+    margin-left: 20px;
+    margin-right: 20px; */
+    /* max-width: 1200px; */
+    border: solid yellow;
     /* background-color: rgb(235, 233, 233); */
   }
 

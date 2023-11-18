@@ -4,6 +4,7 @@ import "./Sidebar.css"
 import Avatar from "@mui/material/Avatar";
 import bg from './Assets/bg.jpg';
 import dog from './Assets/dog.jpg';
+import VisibilityIcon from '@mui/icons-material/Visibility';
 import { SafeGetUserInfoResponse, Web3AuthModalPack } from '../../src';
 
 type AppBarProps = {
@@ -16,8 +17,13 @@ function Sidebar({ userInfo, isLoggedIn }: AppBarProps) {
 
 const recentItem = (topic)=> (
     <div className='sidebar_recentItem'>
-        <span className='sidebar__hash'>#</span>
-        <p>{topic}</p>
+        <span className='sidebar__hash'>
+      <VisibilityIcon style={{ fontSize: '23px', color: 'white', marginLeft: '5px' }} />
+      </span>
+      <div className='s'>
+      {topic}
+      </div>
+    
     </div>
 );
 
@@ -35,30 +41,30 @@ const recentItem = (topic)=> (
             {/* {userInfo.email[0]} */}
             </Avatar>
             {isLoggedIn && userInfo && (
-                <h2 style={{ fontSize: '18px' }}> {userInfo.name}</h2>
+                <h2 style={{ fontSize: '25px' }}> {userInfo.name}</h2>
                 )}
                 {isLoggedIn && userInfo && (
-                <h4> {userInfo.email}</h4>
+                <h4 style={{ fontSize: '20px', color: 'white' }}> {userInfo.email}</h4>
                 )}
         </div>
 
         <div className='sidebar_stats'>
             <div className="sidebar_stat">
-                <p>Who viewed you</p>
-                <p className="sidebar_statNumber">2.500</p>
+            <p style={{ fontSize: '18px', color: 'white' }}>Jobs Done</p>
+                <p style={{ fontSize: '15px' }} className="sidebar_statNumber">14</p>
             </div>
             <div className="sidebar_stat">
-                <p>Views on posts</p>
-                <p className="sidebar_statNumber">2.400</p>
+                <p style={{ fontSize: '18px', color: 'white' }}>Global Rating</p>
+                <p style={{ fontSize: '15px' }} className="sidebar_statNumber">8.7 / 10</p>
             </div>
         </div>
 
         <div className='sidebar_bottom'>
-        <p style={{ fontSize: '13px', paddingBottom: '10px' }}>Recent</p>        
-        {recentItem('reactjs')}
-        {recentItem('programming')}
-        {recentItem('software')}
-        {recentItem('design')}
+        <p style={{ fontSize: '20px',color: 'white', paddingBottom: '10px' }}>Recently Viewed Jobs</p>        
+        {recentItem('PWA NFT store')}
+        {recentItem('Solidity insurance contract')}
+        {recentItem('Integrate Safe to WebApp')}
+        {recentItem('Deploy Arbitrage Contract')}
         </div>
     </div>
   )

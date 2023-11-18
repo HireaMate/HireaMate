@@ -13,6 +13,7 @@ import { EthHashInfo } from '@safe-global/safe-react-components'
 
 import AppBar from './AppBar'
 import Sidebar from './Sidebar'
+import Widgets from './Widgets'
 import Feed from './Feed'
 import './index.css'
 
@@ -126,9 +127,12 @@ function App() {
   return (
     <>
       <AppBar onLogin={login} onLogout={logout} userInfo={userInfo} isLoggedIn={!!provider} />
+      <div className="comp">
       <div className="App_body">
       <Sidebar userInfo={userInfo} onLogout={logout} userInfo={userInfo} isLoggedIn={!!provider} />
       <Feed userInfo={userInfo} onLogout={logout} userInfo={userInfo} isLoggedIn={!!provider} />
+      <Widgets userInfo={userInfo} onLogout={logout} userInfo={userInfo} isLoggedIn={!!provider} />
+      </div>
       </div>
 
 
