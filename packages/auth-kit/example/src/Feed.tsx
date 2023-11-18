@@ -16,18 +16,22 @@ type AppBarProps = {
 }
 
 
-function Feed({ userInfo, isLoggedIn, safeAuthSignInResponse, signInInfo}: AppBarProps) {
+
+function Feed({ userInfo, safeAuthSignInResponse, signInInfo, isLoggedIn}: AppBarProps) {
   
+
   return (
+
+
     <div className='feed'>
 
       <div className='feed_inputContainer'>
  
         <div className='feed_input'>
-        <Posts signInInfo={signInInfo}
+        <Posts signInInfo={signInInfo} 
           />
         </div>
-        <ContractInteractionComponent />
+        <ContractInteractionComponent isLoggedIn={isLoggedIn} safeAuthSignInResponse={safeAuthSignInResponse}/>
 
         </div>
     </div>

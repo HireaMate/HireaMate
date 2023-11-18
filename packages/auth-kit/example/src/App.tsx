@@ -132,6 +132,10 @@ function App() {
 
 
 
+  if (!provider){
+    return null;
+  }
+
   return (
     <>
       <AppBar onLogin={login} onLogout={logout} userInfo={userInfo} isLoggedIn={!!provider} />

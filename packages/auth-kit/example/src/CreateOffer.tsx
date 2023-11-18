@@ -5,8 +5,31 @@ dotenv.config();
 
 // Replace 'YOUR_ETHEREUM_PROVIDER_URL' and 'YOUR_CONTRACT_ADDRESS' with your actual values
 const ethereumProviderUrl = 'https://sepolia.infura.io/v3/5b7465b67f684d79be59b0289fbb6ac9';
-const contractAddress = '0x8f09D8129bcD7B7eF957a4ddf2fDf0CE4f089C07';
+const contractAddress = '0xF6B09E62ff2160D2672E4Dd7E1c820886413fDB2';
 const contractABI = [
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "signedInAccount",
+				"type": "address"
+			},
+			{
+				"internalType": "uint256",
+				"name": "id",
+				"type": "uint256"
+			},
+			{
+				"internalType": "address",
+				"name": "creator_address",
+				"type": "address"
+			}
+		],
+		"name": "addSignInAccountMapping",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
 	{
 		"inputs": [
 			{
@@ -69,11 +92,11 @@ const contractABI = [
 		"inputs": [
 			{
 				"internalType": "uint256",
-				"name": "Id",
+				"name": "_jobId",
 				"type": "uint256"
 			}
 		],
-		"name": "creator_to_id",
+		"name": "deleteJob",
 		"outputs": [],
 		"stateMutability": "nonpayable",
 		"type": "function"
@@ -81,12 +104,17 @@ const contractABI = [
 	{
 		"inputs": [
 			{
+				"internalType": "address",
+				"name": "creator",
+				"type": "address"
+			},
+			{
 				"internalType": "uint256",
-				"name": "_jobId",
+				"name": "Id",
 				"type": "uint256"
 			}
 		],
-		"name": "deleteJob",
+		"name": "mapCreatorToId",
 		"outputs": [],
 		"stateMutability": "nonpayable",
 		"type": "function"
@@ -110,7 +138,7 @@ const contractABI = [
 				"type": "address"
 			}
 		],
-		"name": "creator",
+		"name": "creator_to_id",
 		"outputs": [
 			{
 				"internalType": "uint256",
@@ -125,29 +153,16 @@ const contractABI = [
 		"inputs": [
 			{
 				"internalType": "address",
-				"name": "",
+				"name": "creator_address",
 				"type": "address"
 			},
 			{
 				"internalType": "uint256",
-				"name": "",
+				"name": "ID",
 				"type": "uint256"
 			}
 		],
-		"name": "devAddress",
-		"outputs": [
-			{
-				"internalType": "address",
-				"name": "",
-				"type": "address"
-			}
-		],
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"inputs": [],
-		"name": "employer",
+		"name": "getCreatorBySignInAccountAndJobId",
 		"outputs": [
 			{
 				"internalType": "address",
@@ -284,8 +299,32 @@ const contractABI = [
 		],
 		"stateMutability": "view",
 		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "",
+				"type": "address"
+			},
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"name": "signInAccountMapping",
+		"outputs": [
+			{
+				"internalType": "address",
+				"name": "",
+				"type": "address"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
 	}
-];
+]
 
 
 const web3 = new Web3(ethereumProviderUrl);
